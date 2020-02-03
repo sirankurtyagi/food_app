@@ -6,7 +6,7 @@ const CategoryGridTile = props => {
     return (
         <TouchableOpacity onPress={props.onSelect}>
             <View style={styles.gridLayout}>
-                <Text style={styles.gridItem}>{itemData.item.title}</Text>
+                <Text style={styles.gridItem}>{props.itemData.title}</Text>
             </View>
         </TouchableOpacity>
     );
