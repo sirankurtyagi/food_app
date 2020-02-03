@@ -1,12 +1,17 @@
 import React,{useState} from  'react';
-
 import {View, StyleSheet, Text} from 'react-native';
+import {CATEGORIES} from '../data/dummy-data';
+
+var selectedCategory = '';
 
 const CategoriesMeals = props => {
 
+    const catId = props.navigation.getParam('categoryId');
+    selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+   
     return (
         <View style={styles.mealsContainer}>
-            
+            <Text>{selectedCategory.title}</Text>
             <Text style={styles.mealsList}>Sandwich</Text>
             <Text style={styles.mealsList}>bla bla</Text>
             <Text style={styles.mealsList}>bla bla bla</Text>
@@ -18,6 +23,9 @@ const CategoriesMeals = props => {
     );
 };
 
+CategoriesMeals.navigationOptions = {
+    headerTitle: selectedCategory.title
+};
 const styles = ({
     mealsContainer:{
         margin:10
