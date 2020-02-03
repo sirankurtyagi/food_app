@@ -7,18 +7,19 @@ import CategoryGridTile from '../components/CategoryGridTile';
 
 const CategoriesScreen = props => {
     const renderGridItem = (itemData) => {
+        const { item } = itemData;
+        
         return (
             
             <CategoryGridTile 
-                title='Categories List'
-                // title={itemData.item.title}
+                title={item.title}
                 onSelect={()=>{
                     // props.navigation.navigate('CategoryMeals');
                     props.navigation.navigate({
                         routeName: 'CategoryMeals',
                         params:{
-                            categoryId: 3
-                            // categoryId: itemData.item.id
+                            categoryId: 3,
+                            categoryId: item.id
                         }
                     });
                 }}
