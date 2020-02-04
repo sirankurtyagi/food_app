@@ -12,35 +12,21 @@ const CategoriesScreen = props => {
         return (
             
             <CategoryGridTile 
-                title={item.title}
                 onSelect={()=>{
                     // props.navigation.navigate('CategoryMeals');
                     props.navigation.navigate({
                         routeName: 'CategoryMeals',
                         params:{
-                            categoryId: 3,
                             categoryId: item.id
                         }
                     });
                 }}
+                item={item}
             />
         );
     };
     return (
-        <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns = {3} />
-
-        // <View style={styles.categoriesContainer}>
-        //     <Button title="Go to Meals List" onPress={() =>{
-        //         props.navigation.navigate({routeName:'CategoryMeals'});
-        //     }} />
-        //     <Text style={styles.textContainer}>Breakfast</Text>
-        //     <Text style={styles.textContainer}>North Indian</Text>
-        //     <Text style={styles.textContainer}>Continental</Text>
-        //     <Text style={styles.textContainer}>South Indian</Text>
-        //     <Text style={styles.textContainer}>Italian</Text>
-        //     <Text style={styles.textContainer}>Swedish</Text>
-        //     <Text style={styles.textContainer}>Quick Bites</Text>
-        // </View>
+        <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns = {2} />
     );
 };
 

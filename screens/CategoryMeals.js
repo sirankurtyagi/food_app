@@ -1,6 +1,7 @@
 import React,{useState} from  'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {CATEGORIES} from '../data/dummy-data';
+import {View, StyleSheet, Text, FlatList, TouchableOpacity} from 'react-native';
+import {CATEGORIES, MEALS} from '../data/dummy-data';
+import MealItem from '../components/MealItem';
 
 var selectedCategory = '';
 
@@ -8,17 +9,24 @@ const CategoriesMeals = props => {
 
     const catId = props.navigation.getParam('categoryId');
     selectedCategory = CATEGORIES.find(cat => cat.id === catId);
-   
+    console.log(selectedCategory.title);
+
+    const displayedMeals = MEALS.filter(
+        meal => meal.categoryIds.indexOf(catId) >= 0
+    );
+    const displayMealItem = itemData => {
+        
+        return (
+            <MealItem itemData={itemData}/>
+        );
+    }
     return (
         <View style={styles.mealsContainer}>
-            <Text>{selectedCategory.title}</Text>
-            <Text style={styles.mealsList}>Sandwich</Text>
-            <Text style={styles.mealsList}>bla bla</Text>
-            <Text style={styles.mealsList}>bla bla bla</Text>
-            <Text style={styles.mealsList}>dosa</Text>
-            <Text style={styles.mealsList}>samosa</Text>
-            <Text style={styles.mealsList}>candies</Text>
-            <Text style={styles.mealsList}>burger</Text>
+           <FlatList 
+                data={displayedMeals} 
+                keyExtractor={(item, index)=>item.id}
+                renderItem={displayMealItem}
+                />
         </View>
     );
 };
