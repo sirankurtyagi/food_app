@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        flex: 1
+        flex: 1,
     },
     gridItem:{
         margin: 3,
@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#789800',
         color:'white',
-        fontSize:22,
-        borderWidth:3,
+        fontSize:24,
+        
         paddingTop:30,
         paddingLeft:15,
-        borderRadius:40
+        
     },
 });
 
