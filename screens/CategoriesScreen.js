@@ -1,7 +1,7 @@
 import React,{useState} from  'react';
 import {View, StyleSheet, Text, Button, FlatList, TouchableOpacity, Platform} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-
+import Icon from '@expo/vector-icons/Feather';
 import { CATEGORIES } from '../data/dummy-data';
 import Color from '../constants/Color';
 import CategoryGridTile from '../components/CategoryGridTile';
@@ -36,16 +36,15 @@ CategoriesScreen.navigationOptions = (navData) => {
         
         headerTitle: 'Meal Categories',
         headerTintColor: 'black',
-        headerLeft:(
-            <HeaderButtons Component={CustomHeaderButton}>
-                <Item 
-                    title="Menu" 
-                    iconName='ios-menu' 
-                    onPress={() => {
-                        navData.navigation.toggleDrawer();
-                    }} 
-                />
-            </HeaderButtons>)
+        headerLeft: () => (
+            <View style={{ marginLeft: 10 }}>
+                <Icon 
+                    name="menu" 
+                    size={30} 
+                    onPress={() => navData.navigation.toggleDrawer()} 
+                    />
+            </View>
+        )
     };
 };
 
