@@ -5,7 +5,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CATEGORIES } from '../data/dummy-data';
 import Color from '../constants/Color';
 import CategoryGridTile from '../components/CategoryGridTile';
-import HeaderButton from '../components/HeaderButton';
+import CustomHeaderButton from '../components/HeaderButton';
 
 const CategoriesScreen = props => {
     const renderGridItem = (itemData) => {
@@ -32,12 +32,12 @@ const CategoriesScreen = props => {
 };
 
 CategoriesScreen.navigationOptions = (navData) => {
-    return (
+    return {
         
         headerTitle: 'Meal Categories',
         headerTintColor: 'black',
         headerLeft:(
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <HeaderButtons Component={CustomHeaderButton}>
                 <Item 
                     title="Menu" 
                     iconName='ios-menu' 
@@ -46,7 +46,7 @@ CategoriesScreen.navigationOptions = (navData) => {
                     }} 
                 />
             </HeaderButtons>)
-    );
+    };
 };
 
 const styles = ({
