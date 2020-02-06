@@ -42,6 +42,7 @@ const favNavigator = createStackNavigator(
     {
         defaultNavigationOptions: navOptions
     });
+    
 const bottomTab = {
     Meals: { screen: MealsNavigator,
             defaultNavigationOptions: () => {
@@ -69,7 +70,10 @@ const FilterNav = createStackNavigator({
 });
 
 const MainNavigator = createDrawerNavigator({
-    MealsFav: MealsFavTabNavigator,
+    MealsFav: {screen: MealsFavTabNavigator,
+    navigationOptions: {
+        drawerLabel: 'Favorites'
+    }},
     Filters:FilterNav
 });
                                                         
