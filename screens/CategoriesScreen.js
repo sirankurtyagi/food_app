@@ -1,16 +1,17 @@
 import React,{useState} from  'react';
 import {View, StyleSheet, Text, Button, FlatList, TouchableOpacity, Platform} from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { CATEGORIES } from '../data/dummy-data';
 import Color from '../constants/Color';
 import CategoryGridTile from '../components/CategoryGridTile';
+import HeaderButton from '../components/HeaderButton';
 
 const CategoriesScreen = props => {
     const renderGridItem = (itemData) => {
         const { item } = itemData;
         
         return (
-            
             <CategoryGridTile 
                 onSelect={()=>{
                     // props.navigation.navigate('CategoryMeals');
@@ -30,12 +31,22 @@ const CategoriesScreen = props => {
     );
 };
 
-CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories',
-    headerStyle:{
-        backgroundColor: Platform.OS === 'android' ? Color.primaryColor : 'white'
-    },
-    headerTintColor: 'black'
+CategoriesScreen.navigationOptions = (navData) => {
+    return (
+        
+        headerTitle: 'Meal Categories',
+        headerTintColor: 'black',
+        headerLeft:(
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item 
+                    title="Menu" 
+                    iconName='ios-menu' 
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }} 
+                />
+            </HeaderButtons>)
+    );
 };
 
 const styles = ({

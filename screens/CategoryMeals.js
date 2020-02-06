@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
+import MealList from "../components/MealList";
 
 const CategoriesMeals = props => {
   const catId = props.navigation.getParam("categoryId");
@@ -15,17 +16,9 @@ const CategoriesMeals = props => {
   const displayedMeals = MEALS.filter(
     meal => meal.categoryIds.indexOf(catId) >= 0
   );
-  const displayMealItem = itemData => {
-    return <MealItem itemData={itemData} />;
-  };
+ 
   return (
-    <View style={styles.mealsContainer}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item, index) => item.id}
-        renderItem={displayMealItem}
-      />
-    </View>
+   <MealList  displayedMeals={displayedMeals} navigation={props.navigation} />
   );
 };
 
@@ -38,9 +31,7 @@ CategoriesMeals.navigationOptions = ({ navigation }) => {
   };
 };
 const styles = {
-  mealsContainer: {
-    margin: 10
-  },
+ 
   mealsList: {
     margin: 10,
     borderRadius: 5,

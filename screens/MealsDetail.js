@@ -1,20 +1,34 @@
 import React,{useState} from  'react';
 
-import {View, StyleSheet, Text} from 'react-native';
+import {View, Text, ImageBackground, FlatList, StyleSheet} from 'react-native';
+
+import { MEALS } from '../data/dummy-data';
 
 const MealsDetail = props => {
 
+    const mealId = props.navigation.getParam('mealId');
+    
+    const mealDetails = MEALS.filter(meal=> meal.id === mealId);
+
+    const meal = item => {
+        return ( 
+            <View>
+                <ImageBackground 
+                 source={{uri:item.item.imageUrl}}
+                 style={styles.bgImage} />
+
+                <Text style={styles.meals}>{item.item.title}</Text>
+                <Text style={styles.meals}>{item.item.duration}</Text>
+                <Text>{item.item.steps}</Text>
+            </View>
+        );
+    };
+    
     return (
         <View style={styles.detailContainer}>
-            
-            <Text style={styles.mealDetail}>Veg Sandwich</Text>
-            <Text style={styles.mealDetail}>It contains---</Text>
-            <Text style={styles.mealDetail}>tomatoes</Text>
-            <Text style={styles.mealDetail}>capsicum</Text>
-            <Text style={styles.mealDetail}>ginger</Text>
-            <Text style={styles.mealDetail}>peas</Text>
-            <Text style={styles.mealDetail}>sauces</Text>
-            <Text style={styles.mealDetail}>potato</Text>
+            <FlatList  data={mealDetails}
+                        renderItem={meal}
+            />
         </View>
     );
 };
@@ -23,20 +37,22 @@ const styles = ({
     detailContainer:{
         margin:10
     },
-    mealDetail:{
-        margin:10,
-        borderRadius:5,
-        borderWidth:4,
-        borderColor:'green',
-        padding:20,
-        color:'red',
-        backgroundColor: 'yellow',
-        fontSize:20,
-        borderRadius:50,
-        width:300,
-        textAlign: 'center'
-
-    }
+    bgImage: {
+        width: "100%",
+        height: 200
+    },
+    meals: {
+        margin: 10,
+        borderColor: "green",
+        padding: 20,
+        color: "red",
+        backgroundColor: "yellow",
+        fontSize: 20,
+        borderRadius: 50,
+        width: 300,
+        textAlign: "center"
+      }
+    
 });
 
 export default MealsDetail;

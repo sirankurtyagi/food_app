@@ -2,11 +2,13 @@ import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 
 const CategoryGridTile = props => {
+
+    const bgColor = props.item.color;
     
     return (
         <TouchableOpacity onPress={props.onSelect}>
             <View style={styles.gridLayout}>
-                <Text style={styles.gridItem}>{props.item.title}</Text>
+                <Text style={[styles.gridItem,{backgroundColor:bgColor} ]}>{props.item.title}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -26,10 +28,8 @@ const styles = StyleSheet.create({
         height: 140,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#789800',
-        color:'white',
+        color:'black',
         fontSize:24,
-        
         paddingTop:30,
         paddingLeft:15,
         
