@@ -16,13 +16,25 @@ import MealsDetail from '../screens/MealsDetail';
 import Favorites from '../screens/FavoriteScreen';
 import Filters from '../screens/FiltersScreen';
 import Color from '../constants/Color';
+//test context code
+import { ThemeContext } from '../contexts/ThemeContext';
 
+const contextType = ThemeContext;
+
+console.log(this.context);
+console.log(ThemeContext);
 
 const navOptions = {
     headerStyle:{
         backgroundColor: Platform.OS === 'android' ? Color.primaryColor : 'white'
     },
-    headerTintColor: 'black'
+    headerTintColor: 'black',
+    headerTitleStyle:{
+        fontFamily: 'open-sans-bold'
+    },
+    headerBackTitleStyle:{
+        fontFamily: 'open-sans'
+    }
 };
 
 const MealsNavigator = createStackNavigator({
@@ -47,23 +59,30 @@ const bottomTab = {
     Meals: { screen: MealsNavigator,
             defaultNavigationOptions: () => {
                tabBarIcon: (tabInfo) => {
-                    return <Ionicons name='ios-restaurant' size={40} color={tabInfo.tintColor}  />
+                    return <Ionicons name='ios-restaurant' size={40}  />
                 }
             }
         },
     Favorite:  { screen: favNavigator,
         defaultNavigationOptions: () => {
            tabBarIcon: (tabInfo) => {
-                return <Ionicons name='ios-star' size={40} color={tabInfo.tintColor}  />
+                return <Ionicons name='ios-star' size={40} />
             }
         }
     },
 };
 
-const MealsFavTabNavigator = Platform.OS === 'android' ? createMaterialBottomTabNavigator(bottomTab,{
-                                                            shifting:false
-                                                        }) 
-                                                        : createBottomTabNavigator(bottomTab);
+const tabStyleConfig = {
+    tabBarOptions:{
+        labelStyle:{
+            fontFamily: 'open-sans-bold'
+        }
+    }
+};
+
+const MealsFavTabNavigator = Platform.OS === 'android' 
+                                ? createMaterialBottomTabNavigator(bottomTab,tabStyleConfig) 
+                                : createBottomTabNavigator(bottomTab, tabStyleConfig);
 
 const FilterNav = createStackNavigator({
     Filters:Filters

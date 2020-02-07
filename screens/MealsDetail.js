@@ -1,6 +1,6 @@
 import React,{useState} from  'react';
-
 import {View, Text, ImageBackground, FlatList, StyleSheet} from 'react-native';
+import Icon from '@expo/vector-icons/Feather';
 
 import { MEALS } from '../data/dummy-data';
 
@@ -33,6 +33,20 @@ const MealsDetail = props => {
     );
 };
 
+MealsDetail.navigationOptions = (navData) =>{
+
+    return{
+        headerRight: () => (
+            <View style={{ marginLeft: 10 }}>
+                <Icon 
+                    name="star" 
+                    size={30} 
+                    onPress={() => navData.navigation.navigate('')} 
+                    />
+            </View>
+        )
+    };
+}
 const styles = ({
     detailContainer:{
         margin:10

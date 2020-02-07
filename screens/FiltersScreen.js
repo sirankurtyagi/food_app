@@ -1,12 +1,29 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, Switch, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import CustomHeaderButton from '../components/HeaderButton';
 
 const Filters = props => {
     
-    return <View><Text>Filters Screen</Text></View>;
+    const [ isGlutenFree, setIsGlutenFree] = useState(false);
+
+    return ( 
+
+        <View>
+            <View>
+                <Text>Available Filters</Text>
+            </View>
+            <View>
+                <Text>Gluten-Free</Text>
+                <Switch trackColor={{true: 'grey'}}
+                        thumbColor='yellow'
+                        value={isGlutenFree}
+                        onValueChange={newValue => setIsGlutenFree(newValue) }
+                />
+            </View>
+        </View>
+    );
 };
 
 Filters.navigationOptions = (navData) => {

@@ -1,9 +1,11 @@
 import React,{useState} from  'react';
 import {View, StyleSheet, Text, Button, FlatList, TouchableOpacity, Platform} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
 import Icon from '@expo/vector-icons/Feather';
 import { CATEGORIES } from '../data/dummy-data';
 import Color from '../constants/Color';
+
 import CategoryGridTile from '../components/CategoryGridTile';
 import CustomHeaderButton from '../components/HeaderButton';
 
